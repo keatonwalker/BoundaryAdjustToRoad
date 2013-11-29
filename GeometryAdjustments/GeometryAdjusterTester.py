@@ -9,20 +9,20 @@ from CheckRoad import *
 
 class GeometryAdjusterTest(object):
     
-    inputRoad = None
-    inputBoundary = None
-    tempDatabasePath = None
+    _inputRoad = None
+    _inputBoundary = None
+    _tempDatabasePath = None
    
     def __init__(self):
-        self.inputRoad = os.path.join(os.path.dirname(__file__), "data", "BoundaryToRoadAdjust.gdb", "Roads")
+        self._inputRoad = os.path.join(os.path.dirname(__file__), "data", "BoundaryToRoadAdjust.gdb", "Roads")
         self.checkRoadInputRoad = os.path.join(os.path.dirname(__file__), "data", "BoundaryToRoadAdjust.gdb", "CheckRoadAdjustPointsTestRoad")
-        self.inputBoundary = os.path.join(os.path.dirname(__file__), "data", "BoundaryToRoadAdjust.gdb", "Boundary")
-        self.tempDatabasePath = "C:\Users\kwalker\Documents\Aptana Studio 3 Workspace\BoundaryToRoadAdjustments\GeometryAdjustments\data\TempBoundaryToRoadAdjustments.gdb"
+        self._inputBoundary = os.path.join(os.path.dirname(__file__), "data", "BoundaryToRoadAdjust.gdb", "Boundary")
+        self._tempDatabasePath = "C:\Users\kwalker\Documents\Aptana Studio 3 Workspace\BoundaryToRoadAdjustments\GeometryAdjustments\data\TempBoundaryToRoadAdjustments.gdb"
 
         
     def runAdjustmentRoadFinderTest(self):
-        adjustmentroadfindertester = AdjustmentRoadFinder(self.inputRoad, self.tempDatabasePath)
-        adjustmentroadfindertester.getRoadsToCheck(self.inputBoundary, 30.48, "CheckedRoads")
+        adjustmentroadfindertester = AdjustmentRoadFinder(self._inputRoad, self._tempDatabasePath)
+        adjustmentroadfindertester.getRoadsToCheck(self._inputBoundary, 30.48, "CheckedRoads")
         
     def runCheckRoadAdjustPointsTest(self):
         startPoint = arcpy.Point(459835.1, 4192564.56)
