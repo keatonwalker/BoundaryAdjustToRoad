@@ -16,6 +16,8 @@ class AdjustmentRoadFinder (object):
         self._tempGDB = tempGDB
         
     def getRoadsToCheck(self, boundary, searchDistance, outputFeatureName):
+        '''Takes in a single boundary feature, finds the roads that are within the searchDistance, 
+        and returns those roads as a feature class.'''
         roadsToCheck = os.path.join(self._tempGDB, outputFeatureName)
         roadLayer = "road_layer"
         

@@ -20,7 +20,10 @@ class Boundary(object):
         return self._boundaryGeometry.getPart(0)
     
     def _findStartAndEndIndex(self):
-        '''Returns a list containing: start index, end index, replaceStart?, replaceEnd? '''
+        '''Finds the closest boundary points to the start and end road points. 
+        Booleans replaceStart and replaceEnd determine whether the start and end boundary points should 
+        be replaced with the start and end road points based on their proximity to each other.
+        Returns a list containing: start index, end index, replaceStart?, replaceEnd?'''
         startIndex = None
         endIndex = None
         startDist = None
@@ -42,11 +45,11 @@ class Boundary(object):
                 endDist = tempEndDist
                 endIndex = i
             else:
-                if tempStartDist > startDist:
+                if tempStartDist < startDist:
                     startDist = tempStartDist
                     startIndex = i
 
-                if tempEndDist > endDist:
+                if tempEndDist < endDist:
                     endDist = tempEndDist
                     endIndex = i
                     
@@ -76,6 +79,7 @@ class Boundary(object):
             insertIndex += 1
     
     def getUpdatedBoundary(self):
+        '''Returns updated boundary as a geometry object.'''
         pass
     
     def _distanceFormula(self, x1 , y1, x2, y2):

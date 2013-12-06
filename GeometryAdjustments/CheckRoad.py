@@ -26,6 +26,8 @@ class CheckRoad(object):
         return d
     
     def _getRoadStartAndEndIndex(self):
+        '''Takes the user-selected start and end points, finds the closest road points 
+        to those start and end points, and returns their array indices in the form of a list.'''
         bufferDistance = 1
         
         rdStartPnt = None
@@ -82,7 +84,7 @@ class CheckRoad(object):
                 endPntIndex = i
             
             i += 1
-            print i                    
+            #print i                    
         
         if startPntIndex > endPntIndex:
             # switch points
@@ -97,6 +99,8 @@ class CheckRoad(object):
         return [startPntIndex, endPntIndex]
     
     def _addAdjustPoints(self):
+        '''Adds the road points between and including the start and 
+        end point to the adjustPoints array.'''
         roadStartEnd = self._getRoadStartAndEndIndex()
         tempArray = range(roadStartEnd[0], roadStartEnd[1] + 1)
         for index in tempArray:
@@ -106,6 +110,7 @@ class CheckRoad(object):
         return self.adjustPoints
     
     def getRoadPoints(self):
+        '''Returns an arcpy.Array of road points.'''
         # self._roadPoints = []
         with arcpy.da.SearchCursor(self._inputRoad, "SHAPE@") as Cursor:
             for row in Cursor:
