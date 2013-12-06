@@ -76,7 +76,9 @@ class Test_CheckRoad2(unittest.TestCase):
 class Test_Boundary(unittest.TestCase):
     _adjustPoints = {"InsideBoundary" : arcpy.Array()}#, arcpy.Point(464369.54, 4198802.18),
                                 #arcpy.Point(464365.09, 4197705.4), arcpy.Point(464367.32, 4197182.6))}
-#     _expectedBndReplacedPoints = {"InsideBoundary" : arcpy.Array(arcpy.Point(464387.510, 4199741.310), arcpy.Point(464387.420, 4199721.210),
+    
+    _expectedBndReplacedPoints = {"InsideBoundary" : arcpy.Array()}
+                                #arcpy.Point(464387.510, 4199741.310), arcpy.Point(464387.420, 4199721.210),
 #                                 arcpy.Point(464378.840, 4198132.960), arcpy.Point(464378.750, 4198112.860),
 #                                 arcpy.Point(464380.780, 4197328.900))}
     _inputBoundary = None
@@ -91,6 +93,12 @@ class Test_Boundary(unittest.TestCase):
            
         roadSpatialRef = arcpy.Describe(self._inputBoundary).spatialReference
         self._rdXyResolution = roadSpatialRef.XYResolution
+        self._adjustPoints["InsideBoundary"].add(arcpy.Point(464373.99, 4199785.49))
+        self._adjustPoints["InsideBoundary"].add(arcpy.Point(464369.54, 4198802.18))
+        self._adjustPoints["InsideBoundary"].add(arcpy.Point(464365.09, 4197705.4))
+        self._adjustPoints["InsideBoundary"].add(arcpy.Point(464367.32, 4197182.6))
+        
+        
   
     def tearDown(self):
         pass
